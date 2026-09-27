@@ -1,379 +1,489 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أحمد & رحاب | دعوة خطوبة</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Ultra-Luxury Editorial Styling -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Reem+Kufi:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        garamond: ['Cormorant Garamond', 'serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        kufi: ['Reem Kufi', 'serif']
-                    },
-                    colors: {
-                        obsidian: {
-                            900: '#0a0a0c',
-                            800: '#121216',
-                            700: '#1c1c24'
-                        },
-                        champagne: {
-                            50: '#fbf9f5',
-                            100: '#f4efe4',
-                            200: '#e5dbc3',
-                            300: '#d3c19b',
-                            400: '#bca06f',
-                            500: '#a3844f',
-                            600: '#866b40'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>خطوبة أحمد ورحاب | Ahmed & Rehab</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #0a0b0e;
+            --bg-card: #14161f;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa7c11;
+            --text-main: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             font-family: 'Cairo', sans-serif;
-            background-color: #0a0a0c;
-            color: #f4efe4;
+            min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .editorial-font {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .arabic-title {
-            font-family: 'Reem Kufi', serif;
-        }
-
-        /* Glassmorphism Luxury Card */
-        .glass-card {
-            background: rgba(28, 28, 36, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(211, 193, 155, 0.15);
-        }
-
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(211, 193, 155, 0.2);
-        }
-
-        /* Subtle Glow Animation */
-        @keyframes ambientGlow {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.08); }
-        }
-
+        /* Ambient Glow Background */
         .ambient-glow {
-            animation: ambientGlow 8s ease-in-out infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 40%);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Envelope Overlay */
+        #envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-deep);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0c;
+
+        #envelope-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #bca06f;
-            border-radius: 3px;
+
+        .envelope-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            max-width: 380px;
+            width: 90%;
+            position: relative;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .envelope-card h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .envelope-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.3);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .open-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.5);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--gold-light);
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(212,175,55,0.2);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        /* Quote Section */
+        .quote-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .quote-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Countdown Timer */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 12px 5px;
+            border-radius: 12px;
+        }
+
+        .time-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Venue Section */
+        .venue-title {
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .venue-details {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .action-btn:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Wishes Form */
+        .wishes-title {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95krem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .success-msg {
+            display: none;
+            color: #4ade80;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Audio Control */
+        #audio-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        #audio-control:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="selection:bg-champagne-400 selection:text-obsidian-900 relative">
+<body>
 
-    <!-- Ambient Background Glow Elements -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="absolute -top-40 -right-40 w-96 h-96 bg-champagne-500/10 rounded-full blur-[120px] ambient-glow"></div>
-        <div class="absolute top-1/2 -left-40 w-96 h-96 bg-champagne-600/10 rounded-full blur-[140px] ambient-glow" style="animation-delay: 4s;"></div>
-    </div>
+    <div class="ambient-glow"></div>
 
-    <!-- Cinematic Entry / Envelope Overlay -->
-    <div id="entry-overlay" class="fixed inset-0 z-50 bg-obsidian-900 flex flex-col items-center justify-center p-6 transition-all duration-1000">
-        <div class="absolute inset-0 bg-[radial-gradient(#d3c19b_1px,transparent_1px)] [background-size:24px_24px] opacity-5"></div>
-        
-        <div class="text-center z-10 space-y-6 max-w-lg mx-auto">
-            <span class="text-champagne-400 text-xs md:text-sm uppercase tracking-[0.3em] font-montserrat block">Exclusive Invitation</span>
-            
-            <div class="space-y-2">
-                <h1 class="editorial-font text-5xl md:text-7xl text-champagne-100 font-light tracking-wide italic">Ahmed & Rehab</h1>
-                <p class="arabic-title text-2xl md:text-3xl text-champagne-300 font-light">أحمد & رحاب</p>
-            </div>
-
-            <div class="w-16 h-[1px] bg-champagne-400/50 mx-auto my-4"></div>
-
-            <p class="text-gray-400 text-sm md:text-base font-light tracking-wide">
-                يسعدنا دعوتكم لمشاركتنا لحظات العمر المميزة في حفل خطوبتنا
-            </p>
-
-            <div class="pt-6">
-                <button onclick="enterInvitation()" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-champagne-400/60 hover:border-champagne-400 text-champagne-200 rounded-full font-montserrat text-sm tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(188,160,111,0.3)]">
-                    <span class="absolute inset-0 w-full h-full bg-champagne-400/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                    <i class="fa-solid fa-ring text-champagne-400 transition-transform group-hover:rotate-12"></i>
-                    <span>فتح بطاقة الدعوة</span>
-                </button>
-            </div>
+    <!-- Interactive Envelope Opening Overlay -->
+    <div id="envelope-overlay">
+        <div class="envelope-card">
+            <p>دعوة خاصة لحفل خطوبة</p>
+            <h3>Ahmed & Rehab</h3>
+            <p>انقر هنا لفتح الدعوة</p>
+            <button class="open-btn" onclick="openInvitation()">فتح الدعوة 💌</button>
         </div>
     </div>
 
-    <!-- Main Content Wrapper -->
-    <div id="main-content" class="opacity-0 transition-opacity duration-1000 hidden relative z-10 min-h-screen flex flex-col justify-between">
+    <!-- Floating Background Music (Romantic Instrumental) -->
+    <audio id="bg-audio" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sentiments-171.mp3" type="audio/mp3">
+    </audio>
 
-        <!-- Background Audio Control Float -->
-        <div class="fixed bottom-6 left-6 z-40">
-            <button id="audio-toggle" onclick="toggleAudio()" class="w-12 h-12 glass-card rounded-full flex items-center justify-center text-champagne-300 hover:text-obsidian-900 hover:bg-champagne-400 transition-all duration-300 shadow-xl border border-champagne-400/30">
-                <i id="audio-icon" class="fa-solid fa-music text-sm"></i>
-            </button>
-            <audio id="bg-audio" loop>
-                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-wedding-piano-112157.mp3" type="audio/mpeg">
-            </audio>
-        </div>
+    <!-- Floating Audio Toggle Button -->
+    <div id="audio-control" onclick="toggleAudio()" title="تشغيل/إيقاف الموسيقى">
+        🎵
+    </div>
 
-        <!-- Hero Header Section -->
-        <header class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20">
-            <div class="max-w-4xl mx-auto space-y-8">
-                
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 glass-card-light rounded-full text-champagne-300 text-xs md:text-sm tracking-[0.2em] uppercase font-montserrat">
-                    <i class="fa-solid fa-sparkles text-champagne-400"></i> حفل خطوبة مبارك
-                </div>
-
-                <div class="space-y-4">
-                    <h2 class="editorial-font text-6xl md:text-9xl text-champagne-100 font-light tracking-wide italic leading-tight">
-                        Ahmed & Rehab
-                    </h2>
-                    <h3 class="arabic-title text-4xl md:text-6xl font-light text-champagne-300 tracking-wide">
-                        أحمد & رحاب
-                    </h3>
-                </div>
-
-                <div class="w-24 h-[1px] bg-champagne-400/40 mx-auto"></div>
-
-                <!-- Romantic Quote Feature -->
-                <div class="max-w-2xl mx-auto glass-card p-6 md:p-8 rounded-3xl border border-champagne-400/30 shadow-2xl space-y-4">
-                    <i class="fa-solid fa-quote-right text-champagne-400 text-2xl opacity-70"></i>
-                    <p class="arabic-title text-xl md:text-2xl text-champagne-100 leading-relaxed font-light">
-                        "لم تكن صدفة أن نلتقي، بل كانت أجمل الأقدار أن نلتقي ونختار بعضنا.<br>وبكل الحب، يسعدنا أن نشارككم أولى خطوات حكايتنا"
-                    </p>
-                </div>
-
-                <!-- Date & Time Badges -->
-                <div class="pt-4 flex flex-wrap justify-center gap-4 text-gray-300 text-sm md:text-base font-medium">
-                    <div class="flex items-center gap-2.5 glass-card px-6 py-3 rounded-2xl shadow-lg border border-champagne-400/20">
-                        <i class="fa-regular fa-calendar text-champagne-400"></i>
-                        <span>الجمعة | ٢ أكتوبر ٢٠٢٦</span>
-                    </div>
-                    <div class="flex items-center gap-2.5 glass-card px-6 py-3 rounded-2xl shadow-lg border border-champagne-400/20">
-                        <i class="fa-regular fa-clock text-champagne-400"></i>
-                        <span>الساعة ٨:٣٠ مساءً</span>
-                    </div>
-                </div>
-
-            </div>
+    <!-- Main Content -->
+    <div class="container">
+        <header>
+            <div class="subtitle">Engagement Celebration</div>
+            <h1>Ahmed & Rehab</h1>
+            <div class="date-badge">الجمعة | ٢ أكتوبر ٢٠٢٦</div>
         </header>
 
-        <!-- Live Countdown Timer Section -->
-        <section class="py-16 px-4 relative">
-            <div class="max-w-3xl mx-auto text-center space-y-8">
-                <div class="space-y-2">
-                    <span class="text-champagne-400 text-xs uppercase tracking-[0.3em] font-montserrat">Countdown</span>
-                    <h2 class="arabic-title text-3xl md:text-4xl text-champagne-100 font-light">نعد الأيام للقاء البهيج</h2>
+        <!-- Quote Card -->
+        <div class="card">
+            <p class="quote-text">
+                "لم تكن صدفة أن نلتقي،<br>
+                بل كانت أجمل الأقدار أن نلتقي ونختار بعضنا."
+            </p>
+            <p class="quote-sub">وبكل الحب، يسعدنا أن نشارككم أولى خطوات حكايتنا</p>
+        </div>
+
+        <!-- Countdown Card -->
+        <div class="card">
+            <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 15px;">نعد الأيام للقاء القريب</h3>
+            <div class="countdown-grid">
+                <div class="time-box">
+                    <span class="time-value" id="days">00</span>
+                    <span class="time-label">يوم</span>
                 </div>
-
-                <div class="glass-card rounded-3xl p-6 md:p-10 shadow-2xl border border-champagne-400/20 max-w-2xl mx-auto">
-                    <div id="countdown" class="grid grid-cols-4 gap-3 md:gap-6 text-center">
-                        <div class="glass-card-light p-4 rounded-2xl border border-champagne-400/10">
-                            <span id="days" class="block text-3xl md:text-5xl font-light editorial-font text-champagne-100">00</span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-montserrat mt-1 block">يوم</span>
-                        </div>
-                        <div class="glass-card-light p-4 rounded-2xl border border-champagne-400/10">
-                            <span id="hours" class="block text-3xl md:text-5xl font-light editorial-font text-champagne-100">00</span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-montserrat mt-1 block">ساعة</span>
-                        </div>
-                        <div class="glass-card-light p-4 rounded-2xl border border-champagne-400/10">
-                            <span id="minutes" class="block text-3xl md:text-5xl font-light editorial-font text-champagne-100">00</span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-montserrat mt-1 block">دقيقة</span>
-                        </div>
-                        <div class="glass-card-light p-4 rounded-2xl border border-champagne-400/10">
-                            <span id="seconds" class="block text-3xl md:text-5xl font-light editorial-font text-champagne-100">00</span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-montserrat mt-1 block">ثانية</span>
-                        </div>
-                    </div>
+                <div class="time-box">
+                    <span class="time-value" id="hours">00</span>
+                    <span class="time-label">ساعة</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Venue & Location Details Section -->
-        <section class="py-20 px-4 relative">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12 space-y-2">
-                    <span class="text-champagne-400 text-xs uppercase tracking-[0.3em] font-montserrat">Location & Venue</span>
-                    <h2 class="arabic-title text-3xl md:text-4xl text-champagne-100 font-light">موقع الاحتفال</h2>
-                    <div class="w-16 h-[1px] bg-champagne-400/40 mx-auto mt-4"></div>
+                <div class="time-box">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-label">دقيقة</span>
                 </div>
-
-                <div class="glass-card rounded-3xl p-8 md:p-12 shadow-2xl border border-champagne-400/20 relative overflow-hidden">
-                    <div class="absolute -right-20 -bottom-20 w-60 h-60 bg-champagne-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div class="space-y-6 text-right">
-                            <div class="space-y-2">
-                                <span class="text-xs uppercase tracking-widest text-champagne-400 font-montserrat">البلدة / القريّة</span>
-                                <h3 class="arabic-title text-4xl font-normal text-champagne-100">سنفا</h3>
-                                <p class="text-gray-400 text-sm">محافظة الدقهلية، جمهورية مصر العربية</p>
-                            </div>
-
-                            <div class="space-y-2 pt-2 border-t border-champagne-400/10">
-                                <span class="text-xs uppercase tracking-widest text-champagne-400 font-montserrat">الموعد والتوقيت</span>
-                                <p class="text-gray-200 text-lg font-medium">الجمعة، ٢ أكتوبر ٢٠٢٦</p>
-                                <p class="text-champagne-300 text-sm font-semibold">الساعة ٨:٣٠ مساءً</p>
-                            </div>
-
-                            <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                                <a href="https://maps.google.com/?q=Sanfa,Dakahlia,Egypt" target="_blank" class="flex-1 bg-champagne-400 hover:bg-champagne-500 text-obsidian-900 py-3.5 px-6 rounded-xl font-montserrat font-semibold text-xs tracking-widest uppercase text-center shadow-lg transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-map-location-dot"></i> فتح الخريطة
-                                </a>
-                                <button onclick="addToCalendar()" class="flex-1 glass-card-light hover:bg-champagne-400/10 border border-champagne-400/30 text-champagne-200 py-3.5 px-6 rounded-xl font-montserrat font-semibold text-xs tracking-widest uppercase text-center transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-regular fa-calendar-plus"></i> إضافة للتقويم
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="glass-card-light p-8 rounded-2xl border border-champagne-400/10 text-center space-y-4 flex flex-col items-center justify-center min-h-[260px]">
-                            <div class="w-16 h-16 rounded-full bg-champagne-400/10 border border-champagne-400/30 flex items-center justify-center text-champagne-300 text-2xl">
-                                <i class="fa-solid fa-champagne-glasses"></i>
-                            </div>
-                            <h4 class="arabic-title text-2xl text-champagne-100">ننتظر حضوركم بكل حب</h4>
-                            <p class="text-gray-400 text-xs max-w-xs leading-relaxed">
-                                تشريفكم يضفي على ليلتنا ألقاً وبهجة لا تُنسى في أرض سنفا المباركة.
-                            </p>
-                        </div>
-                    </div>
+                <div class="time-box">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-label">ثانية</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- RSVP & Wishes Section -->
-        <section class="py-20 px-4 relative">
-            <div class="max-w-2xl mx-auto">
-                <div class="text-center mb-12 space-y-2">
-                    <span class="text-champagne-400 text-xs uppercase tracking-[0.3em] font-montserrat">Wishes & Blessings</span>
-                    <h2 class="arabic-title text-3xl md:text-4xl text-champagne-100 font-light">دفتر التهاني والتبريكات</h2>
-                    <p class="text-gray-400 text-xs">اترك كلمة طيبة للعروسين في هذه المناسبة السعيدة</p>
-                    <div class="w-16 h-[1px] bg-champagne-400/40 mx-auto mt-4"></div>
-                </div>
-
-                <!-- Wish Form -->
-                <form id="wish-form" onsubmit="submitWish(event)" class="glass-card p-6 md:p-8 rounded-3xl shadow-2xl border border-champagne-400/20 space-y-6 mb-12">
-                    <div class="space-y-2">
-                        <label class="block text-champagne-200 text-xs uppercase tracking-widest font-montserrat">اسم المهنئ</label>
-                        <input type="text" id="guest-name" required placeholder="اكتب اسمك الكريم..." class="w-full px-4 py-3.5 rounded-xl bg-obsidian-900/60 border border-champagne-400/30 text-gray-100 focus:outline-none focus:border-champagne-400 transition text-sm">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="block text-champagne-200 text-xs uppercase tracking-widest font-montserrat">رسالة التهنئة والدعاء</label>
-                        <textarea id="guest-message" required rows="3" placeholder="اكتب أجمل الأمنيات والدعوات لأحمد & رحاب..." class="w-full px-4 py-3.5 rounded-xl bg-obsidian-900/60 border border-champagne-400/30 text-gray-100 focus:outline-none focus:border-champagne-400 transition text-sm resize-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-4 bg-champagne-400 hover:bg-champagne-500 text-obsidian-900 rounded-xl font-montserrat font-semibold text-xs tracking-[0.2em] uppercase shadow-lg transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> إرسال التهنئة
-                    </button>
-                </form>
-
-                <!-- Wishes Feed -->
-                <div id="wishes-container" class="space-y-4">
-                    <div class="glass-card p-5 rounded-2xl border border-champagne-400/10">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-semibold text-champagne-200 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-heart text-champagne-400 text-xs"></i> عائلة أحمد & رحاب
-                            </h4>
-                            <span class="text-[10px] text-gray-500 font-montserrat">الآن</span>
-                        </div>
-                        <p class="text-gray-300 text-xs md:text-sm leading-relaxed">ألف مبارك للعروسين، جمع بينكما في خير ويسر.</p>
-                    </div>
-                </div>
-
+        <!-- Venue Card -->
+        <div class="card">
+            <div class="venue-title">موقع الحفل</div>
+            <div class="venue-details">
+                <strong>سنفا - Sanfa</strong><br>
+                الساعة ٨:٣٠ مساءً
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-12 glass-card border-t border-champagne-400/20 text-center relative">
-            <div class="max-w-xl mx-auto px-4 space-y-3">
-                <h3 class="editorial-font text-3xl text-champagne-100 font-light italic">Ahmed & Rehab</h3>
-                <p class="arabic-title text-sm text-champagne-300">نسعد بحضوركم وتكتمل فرحتنا بوجودكم في سنفا</p>
-                <p class="text-[10px] text-gray-500 font-montserrat tracking-widest uppercase pt-2">جميع الحقوق محفوظة © ٢٠٢٦</p>
+            <div class="btn-group">
+                <a href="https://maps.google.com/?q=Sanfa,Egypt" target="_blank" class="action-btn">
+                    📍 فتح الخريطة
+                </a>
+                <a href="#" onclick="addToCalendar(event)" class="action-btn">
+                    📅 إضافة للتقويم
+                </a>
             </div>
-        </footer>
+        </div>
 
-    </div>
-
-    <!-- Toast Notification Modal -->
-    <div id="toast" class="fixed top-6 right-6 z-50 glass-card bg-obsidian-900/95 text-champagne-100 px-6 py-3.5 rounded-xl shadow-2xl border border-champagne-400/40 transform translate-y-[-200%] transition-transform duration-300 flex items-center gap-3">
-        <i class="fa-solid fa-circle-check text-champagne-400 text-base"></i>
-        <span id="toast-message" class="text-xs md:text-sm font-medium font-montserrat">تمت العملية بنجاح</span>
+        <!-- Wishes Form Card -->
+        <div class="card">
+            <div class="wishes-title">اترك لنا كلمة حب</div>
+            <form id="wishes-form" onsubmit="submitWish(event)">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="guest-name" placeholder="اسمك الكريم" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" id="guest-message" placeholder="اكتب مباركتك أو أمنيتك للعروسين..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الأمنية ✨</button>
+                <div class="success-msg" id="success-msg">شكراً لك! وصلت مباركتك الغالية للعروسين 🤍</div>
+            </form>
+        </div>
     </div>
 
     <script>
-        // Enter Invitation Overlay Transition
-        function enterInvitation() {
-            const overlay = document.getElementById('entry-overlay');
-            const mainContent = document.getElementById('main-content');
+        const audio = document.getElementById('bg-audio');
+        const audioControl = document.getElementById('audio-control');
+        let isPlaying = false;
 
-            overlay.classList.add('opacity-0', 'pointer-events-none');
-            mainContent.classList.remove('hidden');
-            setTimeout(() => {
-                mainContent.classList.remove('opacity-0');
-            }, 50);
-
-            // Play ambient audio
-            const audio = document.getElementById('bg-audio');
-            audio.play().catch(e => console.log("Audio autoplay prevented by browser policy."));
-            updateAudioIcon(true);
+        function openInvitation() {
+            const overlay = document.getElementById('envelope-overlay');
+            overlay.classList.add('hidden');
+            
+            // Try to play audio immediately upon user interaction
+            audio.play().then(() => {
+                isPlaying = true;
+                audioControl.style.borderColor = 'var(--gold)';
+                audioControl.style.background = 'rgba(212,175,55,0.2)';
+            }).catch(e => {
+                console.log("Audio autoplay restricted:", e);
+            });
         }
 
-        // Background Audio Toggle
-        let isAudioPlaying = false;
         function toggleAudio() {
-            const audio = document.getElementById('bg-audio');
-            if (isAudioPlaying) {
-                audio.pause();
-                isAudioPlaying = false;
-                updateAudioIcon(false);
-                showToast("تم إيقاف الموسيقى");
-            } else {
-                audio.play();
-                isAudioPlaying = true;
-                updateAudioIcon(true);
-                showToast("تم تشغيل الموسيقى");
-            }
-        }
-
-        function updateAudioIcon(isPlaying) {
-            const icon = document.getElementById('audio-icon');
             if (isPlaying) {
-                icon.className = "fa-solid fa-music text-sm animate-pulse";
-                isAudioPlaying = true;
+                audio.pause();
+                isPlaying = false;
+                audioControl.style.background = 'var(--bg-card)';
+                audioControl.style.borderColor = 'var(--border-color)';
             } else {
-                icon.className = "fa-solid fa-volume-xmark text-sm";
-                isAudioPlaying = false;
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioControl.style.background = 'rgba(212,175,55,0.2)';
+                    audioControl.style.borderColor = 'var(--gold)';
+                }).catch(e => {
+                    alert("يرجى النقر في أي مكان بالشاشة أولاً لتفعيل الصوت.");
+                });
             }
         }
 
-        // Live Countdown Timer to October 2, 2026, 20:30 (8:30 PM)
+        // Countdown Timer Logic to October 2, 2026 20:30:00
         const eventDate = new Date("October 2, 2026 20:30:00").getTime();
 
         function updateCountdown() {
@@ -381,7 +491,10 @@
             const distance = eventDate - now;
 
             if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-center font-medium text-champagne-200 text-xl arabic-title'>اليوم هو موعد حفلنا السعيد! مبارك للعروسين</div>";
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
                 return;
             }
 
@@ -399,99 +512,33 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Add to Calendar Function
-        function addToCalendar() {
-            const title = encodeURIComponent("حفل خطوبة أحمد & رحاب");
-            const details = encodeURIComponent("يسعدنا حضوركم حفل خطوبتنا في سنفا، الدقهلية");
-            const location = encodeURIComponent("سنفا، الدقهلية، مصر");
-            const dates = "20261002T183000Z/20261002T220000Z";
-
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
-            window.open(googleCalendarUrl, '_blank');
-            showToast("تم فتح رابط إضافة الحدث للتقويم");
-        }
-
-        // Guest Wishes Submission Handler with LocalStorage Persistence
-        document.addEventListener("DOMContentLoaded", function() {
-            loadSavedWishes();
-        });
-
-        function submitWish(event) {
-            event.preventDefault();
-            const nameInput = document.getElementById('guest-name');
-            const messageInput = document.getElementById('guest-message');
-
-            const name = nameInput.value.trim();
-            const message = messageInput.value.trim();
-
-            if (!name || !message) return;
-
-            const newWish = {
-                name: escapeHtml(name),
-                message: escapeHtml(message),
-                time: "الآن"
-            };
-
-            let savedWishes = JSON.parse(localStorage.getItem('ahmed_rehab_wishes_v2') || '[]');
-            savedWishes.unshift(newWish);
-            localStorage.setItem('ahmed_rehab_wishes_v2', JSON.stringify(savedWishes));
-
-            renderWishes();
-            nameInput.value = '';
-            messageInput.value = '';
-            showToast("تم إرسال تهنئتك بنجاح، شكراً لك!");
-        }
-
-        function loadSavedWishes() {
-            renderWishes();
-        }
-
-        function renderWishes() {
-            const container = document.getElementById('wishes-container');
-            let savedWishes = JSON.parse(localStorage.getItem('ahmed_rehab_wishes_v2') || '[]');
+        // Wishes Form Submission
+        function submitWish(e) {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const message = document.getElementById('guest-message').value;
             
-            let html = `
-                <div class="glass-card p-5 rounded-2xl border border-champagne-400/10">
-                    <div class="flex items-center justify-between mb-2">
-                        <h4 class="font-semibold text-champagne-200 text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-heart text-champagne-400 text-xs"></i> عائلة أحمد & رحاب
-                        </h4>
-                        <span class="text-[10px] text-gray-500 font-montserrat">قبل قليل</span>
-                    </div>
-                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed">ألف مبارك للعروسين، جمع بينكما في خير ويسر.</p>
-                </div>
-            `;
-
-            savedWishes.forEach(wish => {
-                html += `
-                    <div class="glass-card p-5 rounded-2xl border border-champagne-400/10 animate-fade-in">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-semibold text-champagne-200 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-heart text-champagne-400 text-xs"></i> ${wish.name}
-                            </h4>
-                            <span class="text-[10px] text-gray-500 font-montserrat">${wish.time}</span>
-                        </div>
-                        <p class="text-gray-300 text-xs md:text-sm leading-relaxed">${wish.message}</p>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
+            if(name && message) {
+                document.getElementById('wishes-form').reset();
+                const successMsg = document.getElementById('success-msg');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }
         }
 
-        function escapeHtml(text) {
-            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = message;
-            toast.classList.remove('translate-y-[-200%]');
-            setTimeout(() => {
-                toast.classList.add('translate-y-[-200%]');
-            }, 3500);
+        // Add to Calendar 
+        function addToCalendar(e) {
+            e.preventDefault();
+            const title = encodeURIComponent("خطوبة أحمد ورحاب");
+            const details = encodeURIComponent("حفل خطوبة أحمد ورحاب في سنفا");
+            const location = encodeURIComponent("سنفا، مصر");
+            const startTime = "20261002T183000Z";
+            const endTime = "20261002T213000Z";
+            
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${details}&location=${location}`;
+            window.open(googleCalendarUrl, '_blank');
         }
     </script>
 </body>
